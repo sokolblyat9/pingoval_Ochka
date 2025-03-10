@@ -30,7 +30,7 @@ function Proverka_OS {
     elif [[ $os_info == *"MANJARO"* || $os_info == *"Arch"* ]]; then
         echo "Проверка на наличие нужного пакета - parallel - для будущего пинга сети в несколько потоков одновременно"
         if [[ $proverka_parallel == *"License"* ]]; then
-            echo -e ""\nParallel установлен\n""
+            echo -e "\nParallel установлен\n"
         elif [[ $proverka_parallel == *"Error"* ]]; then
             parallel -V --unsafe >/dev/null
             if [[ $(parallel -V --unsafe) == *"License"* ]]; then
@@ -158,6 +158,8 @@ function Ping_Seti_Podgotovka {
                 os_info=$(uname -a)
                 if [[ $os_info == *"MANJARO"* || $os_info == *"Arch"* ]]; then
                     echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k --unsafe 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                elif [[ $os_info == *"Linux calculate"* ]]; then
+                    echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 2>/dev/null 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
                 else
                     echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
                 fi
@@ -190,6 +192,8 @@ function Ping_Seti_Podgotovka {
                 os_info=$(uname -a)
                 if [[ $os_info == *"MANJARO"* || $os_info == *"Arch"* ]]; then
                     echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k --unsafe 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                elif [[ $os_info == *"Linux calculate"* ]]; then
+                    echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 2>/dev/null 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
                 else
                     echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
                 fi
@@ -222,6 +226,8 @@ function Ping_Seti_Podgotovka {
                 os_info=$(uname -a)
                 if [[ $os_info == *"MANJARO"* || $os_info == *"Arch"* ]]; then
                     echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k --unsafe 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                elif [[ $os_info == *"Linux calculate"* ]]; then
+                    echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 2>/dev/null 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
                 else
                     echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
                 fi
@@ -251,6 +257,8 @@ function Ping_Seti_Podgotovka {
                 os_info=$(uname -a)
                 if [[ $os_info == *"MANJARO"* || $os_info == *"Arch"* ]]; then
                     echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k --unsafe 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                elif [[ $os_info == *"Linux calculate"* ]]; then
+                    echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 2>/dev/null 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
                 else
                     echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
                 fi
