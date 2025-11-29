@@ -104,7 +104,7 @@ Proverka_ystanovki_ipcalc
 
 function Sbor_dannyh_iz_ipcalc {
         echo ""
-        read -p $'Впиши какую подсеть ты хочешь пингануть. Например: 192.168.0.0/24:\n\n' ipishnik_s_maskoy
+        read -p $'Впиши какую сеть ты хочешь пингануть. Например: 192.168.0.0/24:\n\n' ipishnik_s_maskoy
         echo Hostmin=$(ipcalc $ipishnik_s_maskoy | grep HostMin | awk '{print $2}') && echo HostMax=$(ipcalc $ipishnik_s_maskoy | grep HostMax | awk '{print $2}') && echo Broadcast=$(ipcalc $ipishnik_s_maskoy | grep Broadcast | awk '{print $2}')
         HostMin=$(ipcalc $ipishnik_s_maskoy | grep HostMin | awk '{print $2}')
         HostMax=$(ipcalc $ipishnik_s_maskoy | grep HostMax | awk '{print $2}')
