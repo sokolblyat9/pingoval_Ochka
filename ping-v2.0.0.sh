@@ -157,11 +157,30 @@ function Ping_Seti_Podgotovka {
 
                 os_info=$(uname -a)
                 if [[ $os_info == *"MANJARO"* || $os_info == *"Arch"* ]]; then
-                    echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k --unsafe 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                    echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k --unsafe 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP - {} доступен\n"' | tee /dev/tty | {
+                            available_ips=$(grep "доступен" | awk '{print $3}')
+                            count=$(echo "$available_ips" | grep -c .)
+                            echo -e "\nДоступные узлы:"
+                            echo "$available_ips"
+                            echo -e "\nДоступно узлов: $count"
+                            }
                 elif [[ $os_info == *"Linux calculate"* ]]; then
-                    echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 2>/dev/null 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                    echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP - {} доступен\n"' | tee /dev/tty | {
+                            available_ips=$(grep "доступен" | awk '{print $3}')
+                            count=$(echo "$available_ips" | grep -c .)
+                            echo -e "\nДоступные узлы:"
+                            echo "$available_ips"
+                            echo -e "\nДоступно узлов: $count"
+                            }
+
                 else
-                    echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                    echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP - {} доступен\n"' | tee /dev/tty | {
+                            available_ips=$(grep "доступен" | awk '{print $3}')
+                            count=$(echo "$available_ips" | grep -c .)
+                            echo -e "\nДоступные узлы:"
+                            echo "$available_ips"
+                            echo -e "\nДоступно узлов: $count"
+                            }
                 fi
 
                 echo -e "\nКоличество пропингованных всего ip адресов: ${#massiv_ip_adresov[@]}\n"
@@ -174,7 +193,13 @@ function Ping_Seti_Podgotovka {
 
                     case $otvet in
                         да|yes|нуа|lf)
-                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k --unsafe 2>/dev/null 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k --unsafe 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP - {} доступен\n"' | tee /dev/tty | {
+                                available_ips=$(grep "доступен" | awk '{print $3}')
+                                count=$(echo "$available_ips" | grep -c .)
+                                echo -e "\nДоступные узлы:"
+                                echo "$available_ips"
+                                echo -e "\nДоступно узлов: $count"
+                            }
                             repeat
                             ;;
                             *)
@@ -185,7 +210,13 @@ function Ping_Seti_Podgotovka {
 
                     case $otvet in
                         да|yes|нуа|lf)
-                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 2>/dev/null 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP - {} доступен\n"' | tee /dev/tty | {
+                                available_ips=$(grep "доступен" | awk '{print $3}')
+                                count=$(echo "$available_ips" | grep -c .)
+                                echo -e "\nДоступные узлы:"
+                                echo "$available_ips"
+                                echo -e "\nДоступно узлов: $count"
+                            }
                             repeat
                             ;;
                             *)
@@ -195,7 +226,13 @@ function Ping_Seti_Podgotovka {
                 else
                     case $otvet in
                         да|yes|нуа|lf)
-                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 2>/dev/null 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP - {} доступен\n"' | tee /dev/tty | {
+                                available_ips=$(grep "доступен" | awk '{print $3}')
+                                count=$(echo "$available_ips" | grep -c .)
+                                echo -e "\nДоступные узлы:"
+                                echo "$available_ips"
+                                echo -e "\nДоступно узлов: $count"
+                            }
                             repeat
                             ;;
                             *)
@@ -233,11 +270,29 @@ function Ping_Seti_Podgotovka {
 
                 os_info=$(uname -a)
                 if [[ $os_info == *"MANJARO"* || $os_info == *"Arch"* ]]; then
-                    echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k --unsafe 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                    echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k --unsafe 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP - {} доступен\n"' | tee /dev/tty | {
+                            available_ips=$(grep "доступен" | awk '{print $3}')
+                            count=$(echo "$available_ips" | grep -c .)
+                            echo -e "\nДоступные узлы:"
+                            echo "$available_ips"
+                            echo -e "\nДоступно узлов: $count"
+                            }
                 elif [[ $os_info == *"Linux calculate"* ]]; then
-                    echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 2>/dev/null 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                    echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP - {} доступен\n"' | tee /dev/tty | {
+                            available_ips=$(grep "доступен" | awk '{print $3}')
+                            count=$(echo "$available_ips" | grep -c .)
+                            echo -e "\nДоступные узлы:"
+                            echo "$available_ips"
+                            echo -e "\nДоступно узлов: $count"
+                            }
                 else
-                    echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                    echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP - {} доступен\n"' | tee /dev/tty | {
+                            available_ips=$(grep "доступен" | awk '{print $3}')
+                            count=$(echo "$available_ips" | grep -c .)
+                            echo -e "\nДоступные узлы:"
+                            echo "$available_ips"
+                            echo -e "\nДоступно узлов: $count"
+                            }
                 fi
 
                 echo -e "\nКоличество пропингованных всего ip адресов: ${#massiv_ip_adresov[@]}\n"
@@ -250,7 +305,13 @@ function Ping_Seti_Podgotovka {
 
                     case $otvet in
                         да|yes|нуа|lf)
-                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k --unsafe 2>/dev/null 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k --unsafe 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP - {} доступен\n"' | tee /dev/tty | {
+                            available_ips=$(grep "доступен" | awk '{print $3}')
+                            count=$(echo "$available_ips" | grep -c .)
+                            echo -e "\nДоступные узлы:"
+                            echo "$available_ips"
+                            echo -e "\nДоступно узлов: $count"
+                            }
                             repeat
                             ;;
                             *)
@@ -261,7 +322,13 @@ function Ping_Seti_Podgotovka {
 
                     case $otvet in
                         да|yes|нуа|lf)
-                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 2>/dev/null 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP - {} доступен\n"' | tee /dev/tty | {
+                            available_ips=$(grep "доступен" | awk '{print $3}')
+                            count=$(echo "$available_ips" | grep -c .)
+                            echo -e "\nДоступные узлы:"
+                            echo "$available_ips"
+                            echo -e "\nДоступно узлов: $count"
+                            }
                             repeat
                             ;;
                             *)
@@ -271,7 +338,13 @@ function Ping_Seti_Podgotovka {
                 else
                     case $otvet in
                         да|yes|нуа|lf)
-                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 2>/dev/null 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP - {} доступен\n"' | tee /dev/tty | {
+                            available_ips=$(grep "доступен" | awk '{print $3}')
+                            count=$(echo "$available_ips" | grep -c .)
+                            echo -e "\nДоступные узлы:"
+                            echo "$available_ips"
+                            echo -e "\nДоступно узлов: $count"
+                            }
                             repeat
                             ;;
                             *)
@@ -308,11 +381,29 @@ function Ping_Seti_Podgotovka {
 
                 os_info=$(uname -a)
                 if [[ $os_info == *"MANJARO"* || $os_info == *"Arch"* ]]; then
-                    echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k --unsafe 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                    echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k --unsafe 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP - {} доступен\n"' | tee /dev/tty | {
+                            available_ips=$(grep "доступен" | awk '{print $3}')
+                            count=$(echo "$available_ips" | grep -c .)
+                            echo -e "\nДоступные узлы:"
+                            echo "$available_ips"
+                            echo -e "\nДоступно узлов: $count"
+                            }
                 elif [[ $os_info == *"Linux calculate"* ]]; then
-                    echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 2>/dev/null 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                    echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP - {} доступен\n"' | tee /dev/tty | {
+                            available_ips=$(grep "доступен" | awk '{print $3}')
+                            count=$(echo "$available_ips" | grep -c .)
+                            echo -e "\nДоступные узлы:"
+                            echo "$available_ips"
+                            echo -e "\nДоступно узлов: $count"
+                            }
                 else
-                    echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                    echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP - {} доступен\n"' | tee /dev/tty | {
+                            available_ips=$(grep "доступен" | awk '{print $3}')
+                            count=$(echo "$available_ips" | grep -c .)
+                            echo -e "\nДоступные узлы:"
+                            echo "$available_ips"
+                            echo -e "\nДоступно узлов: $count"
+                            }
                 fi
 
                 echo -e "\nКоличество пропингованных всего ip адресов: ${#massiv_ip_adresov[@]}\n"
@@ -325,7 +416,13 @@ function Ping_Seti_Podgotovka {
 
                     case $otvet in
                         да|yes|нуа|lf)
-                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k --unsafe 2>/dev/null 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k --unsafe 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP - {} доступен\n"' | tee /dev/tty | {
+                            available_ips=$(grep "доступен" | awk '{print $3}')
+                            count=$(echo "$available_ips" | grep -c .)
+                            echo -e "\nДоступные узлы:"
+                            echo "$available_ips"
+                            echo -e "\nДоступно узлов: $count"
+                            }
                             repeat
                             ;;
                             *)
@@ -336,7 +433,13 @@ function Ping_Seti_Podgotovka {
 
                     case $otvet in
                         да|yes|нуа|lf)
-                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 2>/dev/null 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP - {} доступен\n"' | tee /dev/tty | {
+                            available_ips=$(grep "доступен" | awk '{print $3}')
+                            count=$(echo "$available_ips" | grep -c .)
+                            echo -e "\nДоступные узлы:"
+                            echo "$available_ips"
+                            echo -e "\nДоступно узлов: $count"
+                            }
                             repeat
                             ;;
                             *)
@@ -346,7 +449,13 @@ function Ping_Seti_Podgotovka {
                 else
                     case $otvet in
                         да|yes|нуа|lf)
-                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 2>/dev/null 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP - {} доступен\n"' | tee /dev/tty | {
+                            available_ips=$(grep "доступен" | awk '{print $3}')
+                            count=$(echo "$available_ips" | grep -c .)
+                            echo -e "\nДоступные узлы:"
+                            echo "$available_ips"
+                            echo -e "\nДоступно узлов: $count"
+                            }
                             repeat
                             ;;
                             *)
@@ -380,11 +489,29 @@ function Ping_Seti_Podgotovka {
 
                 os_info=$(uname -a)
                 if [[ $os_info == *"MANJARO"* || $os_info == *"Arch"* ]]; then
-                    echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k --unsafe 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                    echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k --unsafe 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP - {} доступен\n"' | tee /dev/tty | {
+                            available_ips=$(grep "доступен" | awk '{print $3}')
+                            count=$(echo "$available_ips" | grep -c .)
+                            echo -e "\nДоступные узлы:"
+                            echo "$available_ips"
+                            echo -e "\nДоступно узлов: $count"
+                            }
                 elif [[ $os_info == *"Linux calculate"* ]]; then
-                    echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 2>/dev/null 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                    echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP - {} доступен\n"' | tee /dev/tty | {
+                            available_ips=$(grep "доступен" | awk '{print $3}')
+                            count=$(echo "$available_ips" | grep -c .)
+                            echo -e "\nДоступные узлы:"
+                            echo "$available_ips"
+                            echo -e "\nДоступно узлов: $count"
+                            }
                 else
-                    echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                    echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP - {} доступен\n"' | tee /dev/tty | {
+                            available_ips=$(grep "доступен" | awk '{print $3}')
+                            count=$(echo "$available_ips" | grep -c .)
+                            echo -e "\nДоступные узлы:"
+                            echo "$available_ips"
+                            echo -e "\nДоступно узлов: $count"
+                            }
                 fi
 
                 echo -e "\nКоличество пропингованных всего ip адресов: ${#massiv_ip_adresov[@]}\n"
@@ -397,7 +524,13 @@ function Ping_Seti_Podgotovka {
 
                     case $otvet in
                         да|yes|нуа|lf)
-                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k --unsafe 2>/dev/null 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k --unsafe 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP - {} доступен\n"' | tee /dev/tty | {
+                            available_ips=$(grep "доступен" | awk '{print $3}')
+                            count=$(echo "$available_ips" | grep -c .)
+                            echo -e "\nДоступные узлы:"
+                            echo "$available_ips"
+                            echo -e "\nДоступно узлов: $count"
+                            }
                             repeat
                             ;;
                             *)
@@ -408,7 +541,13 @@ function Ping_Seti_Podgotovka {
 
                     case $otvet in
                         да|yes|нуа|lf)
-                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 2>/dev/null 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP - {} доступен\n"' | tee /dev/tty | {
+                            available_ips=$(grep "доступен" | awk '{print $3}')
+                            count=$(echo "$available_ips" | grep -c .)
+                            echo -e "\nДоступные узлы:"
+                            echo "$available_ips"
+                            echo -e "\nДоступно узлов: $count"
+                            }
                             repeat
                             ;;
                             *)
@@ -418,7 +557,13 @@ function Ping_Seti_Podgotovka {
                 else
                     case $otvet in
                         да|yes|нуа|lf)
-                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 2>/dev/null 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP - {} доступен\n"' | tee /dev/tty | {
+                            available_ips=$(grep "доступен" | awk '{print $3}')
+                            count=$(echo "$available_ips" | grep -c .)
+                            echo -e "\nДоступные узлы:"
+                            echo "$available_ips"
+                            echo -e "\nДоступно узлов: $count"
+                            }
                             repeat
                             ;;
                             *)
