@@ -169,19 +169,44 @@ function Ping_Seti_Podgotovka {
                 repeat() {
                 echo -e "\n=================================\nХочешь повторить?\n=================================\n"
                 read otvet
-                    shopt -s nocasematch
+                shopt -s nocasematch
+                if [[ $os_info == *"MANJARO"* || $os_info == *"Arch"* ]]; then
+
+                    case $otvet in
+                        да|yes|нуа|lf)
+                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k --unsafe 2>/dev/null 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                            repeat
+                            ;;
+                            *)
+                            echo -e "\nВсё!\n"
+                            ;;
+                    esac
+                elif [[ $os_info == *"Linux calculate"* ]]; then
+
                     case $otvet in
                         да|yes|нуа|lf)
                             echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 2>/dev/null 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
                             repeat
-                        ;;
-                        *)
-                            echo -e "\nВсё!\n"
-                        ;;
+                            ;;
+                            *)
+                                echo -e "\nВсё!\n"
+                            ;;
                     esac
-                    shopt -u nocasematch
+                else
+                    case $otvet in
+                        да|yes|нуа|lf)
+                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 2>/dev/null 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                            repeat
+                            ;;
+                            *)
+                                echo -e "\nВсё!\n"
+                            ;;
+                    esac
+                fi
+                shopt -u nocasematch
                 }
                 repeat
+
 
             elif [[ $temp_oktet == 100 ]]; then
                 for ((i=$temp_min_ip_two_oktet; i <= $temp_max_ip_two_oktet; i++ ))
@@ -220,17 +245,41 @@ function Ping_Seti_Podgotovka {
                 repeat() {
                 echo -e "\n=================================\nХочешь повторить?\n=================================\n"
                 read otvet
-                    shopt -s nocasematch
+                shopt -s nocasematch
+                if [[ $os_info == *"MANJARO"* || $os_info == *"Arch"* ]]; then
+
+                    case $otvet in
+                        да|yes|нуа|lf)
+                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k --unsafe 2>/dev/null 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                            repeat
+                            ;;
+                            *)
+                            echo -e "\nВсё!\n"
+                            ;;
+                    esac
+                elif [[ $os_info == *"Linux calculate"* ]]; then
+
                     case $otvet in
                         да|yes|нуа|lf)
                             echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 2>/dev/null 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
                             repeat
-                        ;;
-                        *)
-                            echo -e "\nВсё!\n"
-                        ;;
+                            ;;
+                            *)
+                                echo -e "\nВсё!\n"
+                            ;;
                     esac
-                    shopt -u nocasematch
+                else
+                    case $otvet in
+                        да|yes|нуа|lf)
+                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 2>/dev/null 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                            repeat
+                            ;;
+                            *)
+                                echo -e "\nВсё!\n"
+                            ;;
+                    esac
+                fi
+                shopt -u nocasematch
                 }
                 repeat
 
@@ -271,17 +320,41 @@ function Ping_Seti_Podgotovka {
                 repeat() {
                 echo -e "\n=================================\nХочешь повторить?\n=================================\n"
                 read otvet
-                    shopt -s nocasematch
+                shopt -s nocasematch
+                if [[ $os_info == *"MANJARO"* || $os_info == *"Arch"* ]]; then
+
+                    case $otvet in
+                        да|yes|нуа|lf)
+                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k --unsafe 2>/dev/null 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                            repeat
+                            ;;
+                            *)
+                            echo -e "\nВсё!\n"
+                            ;;
+                    esac
+                elif [[ $os_info == *"Linux calculate"* ]]; then
+
                     case $otvet in
                         да|yes|нуа|lf)
                             echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 2>/dev/null 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
                             repeat
-                        ;;
-                        *)
-                            echo -e "\nВсё!\n"
-                        ;;
+                            ;;
+                            *)
+                                echo -e "\nВсё!\n"
+                            ;;
                     esac
-                    shopt -u nocasematch
+                else
+                    case $otvet in
+                        да|yes|нуа|lf)
+                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 2>/dev/null 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                            repeat
+                            ;;
+                            *)
+                                echo -e "\nВсё!\n"
+                            ;;
+                    esac
+                fi
+                shopt -u nocasematch
                 }
                 repeat
 
@@ -319,17 +392,41 @@ function Ping_Seti_Podgotovka {
                 repeat() {
                 echo -e "\n=================================\nХочешь повторить?\n=================================\n"
                 read otvet
-                    shopt -s nocasematch
+                shopt -s nocasematch
+                if [[ $os_info == *"MANJARO"* || $os_info == *"Arch"* ]]; then
+
+                    case $otvet in
+                        да|yes|нуа|lf)
+                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k --unsafe 2>/dev/null 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                            repeat
+                            ;;
+                            *)
+                            echo -e "\nВсё!\n"
+                            ;;
+                    esac
+                elif [[ $os_info == *"Linux calculate"* ]]; then
+
                     case $otvet in
                         да|yes|нуа|lf)
                             echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 2>/dev/null 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
                             repeat
-                        ;;
-                        *)
-                            echo -e "\nВсё!\n"
-                        ;;
+                            ;;
+                            *)
+                                echo -e "\nВсё!\n"
+                            ;;
                     esac
-                    shopt -u nocasematch
+                else
+                    case $otvet in
+                        да|yes|нуа|lf)
+                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 2>/dev/null 'echo -e "\r\nПингуется IP: {}" && ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo -e "\nIP {} доступен\n" ' | tee /dev/tty | grep -c "доступен" | xargs -I {} echo -e "\nДоступно узлов : {}"
+                            repeat
+                            ;;
+                            *)
+                                echo -e "\nВсё!\n"
+                            ;;
+                    esac
+                fi
+                shopt -u nocasematch
                 }
                 repeat
 
