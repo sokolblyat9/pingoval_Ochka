@@ -337,7 +337,7 @@ function Ping_Seti_Podgotovka {
             ;;
 
         нет|ytn|тщ|no)
-            printf "Что же ты тогда хочешь шьорт побъери???\nПопробуем еще раз..."
+            printf "\nЧто же ты тогда хочешь шьорт побъери???\n\nПопробуем еще раз...\n"
             Sbor_dannyh_iz_ipcalc
             Ping_Seti_Podgotovka
             ;;
