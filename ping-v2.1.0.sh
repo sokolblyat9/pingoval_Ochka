@@ -199,6 +199,7 @@ function Ping_Seti_Podgotovka {
                                 echo -e "\nДоступные узлы:"
                                 echo "$available_ips"
                                 echo -e "\nДоступно узлов: $count"
+                                echo -e "\nКоличество пропингованных всего ip адресов: ${#massiv_ip_adresov[@]}\n"
                             }
                             repeat
                             ;;
@@ -216,6 +217,7 @@ function Ping_Seti_Podgotovka {
                                 echo -e "\nДоступные узлы:"
                                 echo "$available_ips"
                                 echo -e "\nДоступно узлов: $count"
+                                echo -e "\nКоличество пропингованных всего ip адресов: ${#massiv_ip_adresov[@]}\n"
                             }
                             repeat
                             ;;
@@ -232,6 +234,7 @@ function Ping_Seti_Podgotovka {
                                 echo -e "\nДоступные узлы:"
                                 echo "$available_ips"
                                 echo -e "\nДоступно узлов: $count"
+                                echo -e "\nКоличество пропингованных всего ip адресов: ${#massiv_ip_adresov[@]}\n"
                             }
                             repeat
                             ;;
@@ -311,6 +314,7 @@ function Ping_Seti_Podgotovka {
                                 echo -e "\nДоступные узлы:"
                                 echo "$available_ips"
                                 echo -e "\nДоступно узлов: $count"
+                                echo -e "\nКоличество пропингованных всего ip адресов: ${#massiv_ip_adresov[@]}\n"
                             }
                             repeat
                             ;;
@@ -328,6 +332,7 @@ function Ping_Seti_Podgotovka {
                                 echo -e "\nДоступные узлы:"
                                 echo "$available_ips"
                                 echo -e "\nДоступно узлов: $count"
+                                echo -e "\nКоличество пропингованных всего ip адресов: ${#massiv_ip_adresov[@]}\n"
                             }
                             repeat
                             ;;
@@ -344,6 +349,7 @@ function Ping_Seti_Podgotovka {
                                 echo -e "\nДоступные узлы:"
                                 echo "$available_ips"
                                 echo -e "\nДоступно узлов: $count"
+                                echo -e "\nКоличество пропингованных всего ip адресов: ${#massiv_ip_adresov[@]}\n"
                             }
                             repeat
                             ;;
@@ -422,6 +428,7 @@ function Ping_Seti_Podgotovka {
                                 echo -e "\nДоступные узлы:"
                                 echo "$available_ips"
                                 echo -e "\nДоступно узлов: $count"
+                                echo -e "\nКоличество пропингованных всего ip адресов: ${#massiv_ip_adresov[@]}\n"
                             }
                             repeat
                             ;;
@@ -439,6 +446,7 @@ function Ping_Seti_Podgotovka {
                                 echo -e "\nДоступные узлы:"
                                 echo "$available_ips"
                                 echo -e "\nДоступно узлов: $count"
+                                echo -e "\nКоличество пропингованных всего ip адресов: ${#massiv_ip_adresov[@]}\n"
                             }
                             repeat
                             ;;
@@ -455,6 +463,7 @@ function Ping_Seti_Podgotovka {
                                 echo -e "\nДоступные узлы:"
                                 echo "$available_ips"
                                 echo -e "\nДоступно узлов: $count"
+                                echo -e "\nКоличество пропингованных всего ip адресов: ${#massiv_ip_adresov[@]}\n"
                             }
                             repeat
                             ;;
@@ -530,6 +539,7 @@ function Ping_Seti_Podgotovka {
                                 echo -e "\nДоступные узлы:"
                                 echo "$available_ips"
                                 echo -e "\nДоступно узлов: $count"
+                                echo -e "\nКоличество пропингованных всего ip адресов: ${#massiv_ip_adresov[@]}\n"
                             }
                             repeat
                             ;;
@@ -547,6 +557,7 @@ function Ping_Seti_Podgotovka {
                                 echo -e "\nДоступные узлы:"
                                 echo "$available_ips"
                                 echo -e "\nДоступно узлов: $count"
+                                echo -e "\nКоличество пропингованных всего ip адресов: ${#massiv_ip_adresov[@]}\n"
                             }
                             repeat
                             ;;
@@ -563,6 +574,7 @@ function Ping_Seti_Podgotovka {
                                 echo -e "\nДоступные узлы:"
                                 echo "$available_ips"
                                 echo -e "\nДоступно узлов: $count"
+                                echo -e "\nКоличество пропингованных всего ip адресов: ${#massiv_ip_adresov[@]}\n"
                             }
                             repeat
                             ;;
