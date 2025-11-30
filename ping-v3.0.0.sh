@@ -171,7 +171,7 @@ function Ping_Seti_Podgotovka {
                     }
                 elif [[ $os_info == *"Linux calculate"* ]]; then
                     {
-                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k '
+                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 2>/dev/null '
                                 echo -ne "\r\033[KПингуется IP: {}" > /dev/tty
                                 ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo "{}"
                             '
@@ -201,7 +201,7 @@ function Ping_Seti_Podgotovka {
                 echo -e "\nКоличество пропингованных всего ip адресов: ${#massiv_ip_adresov[@]}\n"
 
                 repeat() {
-                echo -e "\n=================================\nХочешь повторить?\n=================================\n"
+                echo -e "\n=================================\nХочешь повторить?   (Да / Нет)\n=================================\n"
                 read otvet
                 shopt -s nocasematch
                 if [[ $os_info == *"MANJARO"* || $os_info == *"Arch"* ]]; then
@@ -232,7 +232,7 @@ function Ping_Seti_Podgotovka {
                     case $otvet in
                         да|yes|нуа|lf)
                             {
-                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k '
+                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 2>/dev/null '
                                 echo -ne "\r\033[KПингуется IP: {}" > /dev/tty
                                 ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo "{}"
                             '
@@ -317,7 +317,7 @@ function Ping_Seti_Podgotovka {
                     }
                 elif [[ $os_info == *"Linux calculate"* ]]; then
                     {
-                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k '
+                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 2>/dev/null '
                                 echo -ne "\r\033[KПингуется IP: {}" > /dev/tty
                                 ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo "{}"
                             '
@@ -346,7 +346,7 @@ function Ping_Seti_Podgotovka {
                 echo -e "\nКоличество пропингованных всего ip адресов: ${#massiv_ip_adresov[@]}\n"
 
                 repeat() {
-                echo -e "\n=================================\nХочешь повторить?\n=================================\n"
+                echo -e "\n=================================\nХочешь повторить?   (Да / Нет)\n=================================\n"
                 read otvet
                 shopt -s nocasematch
                 if [[ $os_info == *"MANJARO"* || $os_info == *"Arch"* ]]; then
@@ -377,7 +377,7 @@ function Ping_Seti_Podgotovka {
                     case $otvet in
                         да|yes|нуа|lf)
                             {
-                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k '
+                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 2>/dev/null '
                                 echo -ne "\r\033[KПингуется IP: {}" > /dev/tty
                                 ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo "{}"
                             '
@@ -461,7 +461,7 @@ function Ping_Seti_Podgotovka {
                     }
                 elif [[ $os_info == *"Linux calculate"* ]]; then
                     {
-                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k '
+                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 2>/dev/null '
                                 echo -ne "\r\033[KПингуется IP: {}" > /dev/tty
                                 ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo "{}"
                             '
@@ -490,7 +490,7 @@ function Ping_Seti_Podgotovka {
                 echo -e "\nКоличество пропингованных всего ip адресов: ${#massiv_ip_adresov[@]}\n"
 
                 repeat() {
-                echo -e "\n=================================\nХочешь повторить?\n=================================\n"
+                echo -e "\n=================================\nХочешь повторить?   (Да / Нет)\n=================================\n"
                 read otvet
                 shopt -s nocasematch
                 if [[ $os_info == *"MANJARO"* || $os_info == *"Arch"* ]]; then
@@ -521,7 +521,7 @@ function Ping_Seti_Podgotovka {
                     case $otvet in
                         да|yes|нуа|lf)
                             {
-                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k '
+                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 2>/dev/null '
                                 echo -ne "\r\033[KПингуется IP: {}" > /dev/tty
                                 ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo "{}"
                             '
@@ -602,7 +602,7 @@ function Ping_Seti_Podgotovka {
                     }
                 elif [[ $os_info == *"Linux calculate"* ]]; then
                     {
-                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k '
+                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 2>/dev/null '
                                 echo -ne "\r\033[KПингуется IP: {}" > /dev/tty
                                 ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo "{}"
                             '
@@ -631,7 +631,7 @@ function Ping_Seti_Podgotovka {
                 echo -e "\nКоличество пропингованных всего ip адресов: ${#massiv_ip_adresov[@]}\n"
 
                 repeat() {
-                echo -e "\n=================================\nХочешь повторить?\n=================================\n"
+                echo -e "\n=================================\nХочешь повторить?   (Да / Нет)\n=================================\n"
                 read otvet
                 shopt -s nocasematch
                 if [[ $os_info == *"MANJARO"* || $os_info == *"Arch"* ]]; then
@@ -662,7 +662,7 @@ function Ping_Seti_Podgotovka {
                     case $otvet in
                         да|yes|нуа|lf)
                             {
-                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k '
+                            echo -e "${massiv_ip_adresov[@]}" | tr ' ' '\n' | parallel -j $potok -k 2>/dev/null '
                                 echo -ne "\r\033[KПингуется IP: {}" > /dev/tty
                                 ping -c 4 -W 4 {} > /dev/null 2>/dev/null && echo "{}"
                             '
